@@ -8,6 +8,7 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const cors = require('cors')
 
 
 mongoose
@@ -24,6 +25,10 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+app.use(cors({
+  credentials:true,
+  origin:['http://localhost:3001']
+}))
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());

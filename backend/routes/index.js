@@ -23,6 +23,17 @@ router.get('/characters',(req,res,nex)=>{
   )
 })
 
+router.get('/characters/:name',(req,res,nex)=>{
+  const {name}=req.params
+  Characters.findOne({name})
+  .then(character=>{
+    res.status(200).json({character})
+  })
+  .catch( 
+    err=>res.status(500).json({err})
+  )
+})
+
 router.get('/episodes',(req,res,nex)=>{
   Episode.find()
   .then(episodes=>{
